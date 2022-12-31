@@ -9,10 +9,11 @@ echo "BUILD_ROOT = $BUILD_ROOT"
 [[ ! -d $BUILD_ROOT ]] && mkdir -p $BUILD_ROOT
 
 install_alacritty_git() {
+	apt install alacritty -y
 	apt install git -y
-	apt install snapd -y
-	snap install core
-	snap install alacritty --classic
+	# apt install snapd -y
+	# snap install core
+	# snap install alacritty --classic
 }
 
 download_suckless_repo(){
@@ -24,7 +25,7 @@ download_suckless_repo(){
 }
 
 download_suckless_allrepos() {
-	for i in dwm slock dmenu sent slstatus;do
+	for i in dwm slock slstatus;do
 		download_suckless_repo $i
 	done
 }
@@ -129,9 +130,9 @@ main() {
 	download_suckless_allrepos
 
 	build_suckless_custom_dwm
-	build_suckless_repo dmenu
-
+	#build_suckless_repo dmenu
 	download_suckless_repo slstatus
+
 	build_suckless_custom_slstatus
 
 	update_lightdm
